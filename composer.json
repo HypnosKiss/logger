@@ -1,0 +1,34 @@
+{
+    "name": "sweeper/logger",
+    "description": "output log and auto write log",
+    "type": "library",
+    "keywords": [
+        "log",
+        "logger",
+        "php"
+    ],
+    "homepage": "https://github.com/HypnosKiss/logger/",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "sweeper",
+            "email": "wili.lixiang@gmail.com"
+        }
+    ],
+    "require": {
+        "psr/log": "^1.1",
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sweeper\\Logger\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sweeper",
+            "email": "wili.lixiang@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
