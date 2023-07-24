@@ -7,7 +7,7 @@ use Sweeper\Logger\LoggerException;
 use Sweeper\Logger\LoggerLevel;
 use Sweeper\Logger\output\ConsoleOutput;
 use Sweeper\Logger\output\FileOutput;
-use Sweeper\Logger\traits\SinglePattern;
+use Sweeper\DesignPattern\traits\SinglePattern;
 
 /**
  * 提供便捷的 log 注册方法

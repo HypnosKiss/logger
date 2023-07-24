@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ed77d48182d29515702ccb5510026da",
+    "content-hash": "7db0f631dbe8f3e8a7e32cf5a7e5a998",
     "packages": [
         {
             "name": "psr/log",
@@ -61,6 +61,57 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
+            "name": "sweeper/design-pattern",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/HypnosKiss/design-pattern.git",
+                "reference": "f656cc3010fba438f2a68fe8a556ac638e4371d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/HypnosKiss/design-pattern/zipball/f656cc3010fba438f2a68fe8a556ac638e4371d6",
+                "reference": "f656cc3010fba438f2a68fe8a556ac638e4371d6",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sweeper\\DesignPattern\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "sweeper",
+                    "email": "wili.lixiang@gmail.com"
+                }
+            ],
+            "description": "design-pattern example",
+            "homepage": "https://github.com/HypnosKiss/design-pattern/",
+            "keywords": [
+                "design-pattern",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/HypnosKiss/design-pattern/issues",
+                "source": "https://github.com/HypnosKiss/design-pattern/tree/1.0.0"
+            },
+            "time": "2023-07-24T07:11:45+00:00"
         }
     ],
     "packages-dev": [],
