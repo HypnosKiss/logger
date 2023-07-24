@@ -18,6 +18,7 @@ class testObj
 
     public function __construct()
     {
+        $this->setLogFile('/webroot/php/logs/test.info.log');
         $this->debug('__construct');
     }
 
