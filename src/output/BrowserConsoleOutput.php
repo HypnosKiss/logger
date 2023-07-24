@@ -2,8 +2,7 @@
 
 namespace Sweeper\Logger\output;
 
-use app\common\lib\logger\src\Logger;
-use app\common\lib\logger\src\LoggerLevel;
+use Sweeper\Logger\LoggerLevel;
 
 /**
  * 浏览器控制台输出
