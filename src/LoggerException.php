@@ -2,7 +2,9 @@
 
 namespace Sweeper\Logger;
 
-class LoggerException extends \LogicException
+use Psr\Log\InvalidArgumentException;
+
+class LoggerException extends InvalidArgumentException
 {
 
 }
