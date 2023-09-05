@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7db0f631dbe8f3e8a7e32cf5a7e5a998",
+    "content-hash": "3f011bdea8a6df47a361c0c6a8744baa",
     "packages": [
         {
             "name": "psr/log",
@@ -18,13 +18,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
                 "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
@@ -64,23 +58,17 @@
         },
         {
             "name": "sweeper/design-pattern",
-            "version": "1.0.0",
+            "version": "1.0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HypnosKiss/design-pattern.git",
-                "reference": "f656cc3010fba438f2a68fe8a556ac638e4371d6"
+                "reference": "011e031ec0c151bc040ca469e2f3f0b86ddd34ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HypnosKiss/design-pattern/zipball/f656cc3010fba438f2a68fe8a556ac638e4371d6",
-                "reference": "f656cc3010fba438f2a68fe8a556ac638e4371d6",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/HypnosKiss/design-pattern/zipball/011e031ec0c151bc040ca469e2f3f0b86ddd34ee",
+                "reference": "011e031ec0c151bc040ca469e2f3f0b86ddd34ee",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.2"
@@ -109,9 +97,9 @@
             ],
             "support": {
                 "issues": "https://github.com/HypnosKiss/design-pattern/issues",
-                "source": "https://github.com/HypnosKiss/design-pattern/tree/1.0.0"
+                "source": "https://github.com/HypnosKiss/design-pattern/tree/1.0.1.2"
             },
-            "time": "2023-07-24T07:11:45+00:00"
+            "time": "2023-09-05T04:33:31+00:00"
         }
     ],
     "packages-dev": [],
@@ -121,7 +109,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

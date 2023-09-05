@@ -2,6 +2,7 @@
 
 namespace Sweeper\Logger\output;
 
+use Sweeper\Logger\Logger;
 use Sweeper\Logger\LoggerLevel;
 
 /**

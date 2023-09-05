@@ -2,12 +2,12 @@
 
 namespace Sweeper\Logger\lib;
 
+use Sweeper\DesignPattern\Traits\Multiton;
 use Sweeper\Logger\Logger;
 use Sweeper\Logger\LoggerException;
 use Sweeper\Logger\LoggerLevel;
 use Sweeper\Logger\output\ConsoleOutput;
 use Sweeper\Logger\output\FileOutput;
-use Sweeper\DesignPattern\traits\SinglePattern;
 
 /**
  * 提供便捷的 log 注册方法
@@ -19,7 +19,7 @@ use Sweeper\DesignPattern\traits\SinglePattern;
 class Log
 {
 
-    use SinglePattern;
+    use Multiton;
 
     /** @var Logger */
     private $logger;

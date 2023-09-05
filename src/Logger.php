@@ -26,9 +26,6 @@ class Logger implements LoggerInterface
     /** @var array 配置信息 */
     private $config;
 
-    /** @var array 日志存储 */
-    private $log;
-
     /** @var self[] 实例列表 */
     private static $instanceList = [];
 
@@ -100,8 +97,8 @@ class Logger implements LoggerInterface
      * call static log method via default logger instance 在静态上下文中调用一个不可访问方法时，__callStatic() 会被调用。
      * User: Sweeper
      * Time: 2023/7/20 16:52
-     * @param $methodName
-     * @param $messages
+     * @param string $methodName
+     * @param array  $messages
      * @return false|null
      */
     public static function __callStatic(string $methodName, array $messages)
@@ -145,7 +142,7 @@ class Logger implements LoggerInterface
         $logId = $id ?? static::DEFAULT_LOG_ID;
         $alias = $logId . '-' . ($alias ?? static::class);
         if ($dynamic) {
-            $alias .= ':' . md5(json_encode($config));
+            $alias .= ':' . serialize($config);
         }
         // 判断是否已经存在实例化对象
         if (!isset(static::$instanceList[$alias])) {
@@ -185,13 +182,13 @@ class Logger implements LoggerInterface
      * register handler
      * User: Sweeper
      * Time: 2023/7/20 17:30
-     * @param callable    $handler
-     * @param string      $collectingLevel
-     * @param bool        $withTraceInfo
-     * @param string|null $uniqueKey
+     * @param LoggerInterface $handler
+     * @param string          $collectingLevel
+     * @param bool            $withTraceInfo
+     * @param string|null     $uniqueKey
      * @return $this
      */
-    public function register(callable $handler, string $collectingLevel = LoggerLevel::INFO, bool $withTraceInfo = false, string $uniqueKey = null): self
+    public function register(LoggerInterface $handler, string $collectingLevel = LoggerLevel::INFO, bool $withTraceInfo = false, string $uniqueKey = null): self
     {
         static::$handlers[$uniqueKey ?? md5(microtime(true)())] = [$handler, $collectingLevel, $this->id, $withTraceInfo];
 
@@ -202,14 +199,14 @@ class Logger implements LoggerInterface
      * register global handler
      * User: Sweeper
      * Time: 2023/7/20 17:36
-     * @param callable          $handler
+     * @param LoggerInterface   $handler
      * @param string            $collectingLevel
      * @param array|string|null $loggerId specified logger instance id, or id list
      * @param bool              $withTraceInfo
      * @param string|null       $uniqueKey
      * @return void
      */
-    public static function registerGlobal(callable $handler, string $collectingLevel = LoggerLevel::INFO, $loggerId = null, bool $withTraceInfo = false, string $uniqueKey = null): void
+    public static function registerGlobal(LoggerInterface $handler, string $collectingLevel = LoggerLevel::INFO, $loggerId = null, bool $withTraceInfo = false, string $uniqueKey = null): void
     {
         static::$handlers[$uniqueKey ?? md5(microtime(true)())] = [$handler, $collectingLevel, $loggerId, $withTraceInfo];
     }
@@ -218,14 +215,14 @@ class Logger implements LoggerInterface
      * register while handler
      * User: Sweeper
      * Time: 2023/7/20 17:39
-     * @param string      $triggerLevel
-     * @param callable    $handler
-     * @param string      $collectingLevel
-     * @param bool        $withTraceInfo
-     * @param string|null $uniqueKey
+     * @param string          $triggerLevel
+     * @param LoggerInterface $handler
+     * @param string          $collectingLevel
+     * @param bool            $withTraceInfo
+     * @param string|null     $uniqueKey
      * @return $this
      */
-    public function registerWhile(string $triggerLevel, callable $handler, string $collectingLevel = LoggerLevel::INFO, bool $withTraceInfo = false, string $uniqueKey = null): self
+    public function registerWhile(string $triggerLevel, LoggerInterface $handler, string $collectingLevel = LoggerLevel::INFO, bool $withTraceInfo = false, string $uniqueKey = null): self
     {
         static::$whileHandlers[$uniqueKey ?? md5(microtime(true)())] = [$triggerLevel, $handler, $collectingLevel, $this->id, $withTraceInfo, 0];
 
@@ -237,29 +234,16 @@ class Logger implements LoggerInterface
      * User: Sweeper
      * Time: 2023/7/20 17:41
      * @param string            $triggerLevel
-     * @param callable          $handler
+     * @param LoggerInterface   $handler
      * @param string            $collectingLevel
      * @param array|string|null $loggerId specified logger instance id, or id list
      * @param bool              $withTraceInfo
      * @param string|null       $uniqueKey
      * @return void
      */
-    public static function registerWhileGlobal(string $triggerLevel, callable $handler, string $collectingLevel = LoggerLevel::INFO, $loggerId = null, bool $withTraceInfo = false, string $uniqueKey = null): void
+    public static function registerWhileGlobal(string $triggerLevel, LoggerInterface $handler, string $collectingLevel = LoggerLevel::INFO, $loggerId = null, bool $withTraceInfo = false, string $uniqueKey = null): void
     {
         static::$whileHandlers[$uniqueKey ?? md5(microtime(true)())] = [$triggerLevel, $handler, $collectingLevel, $loggerId, $withTraceInfo, 0];
-    }
-
-    /**
-     * 清空日志信息
-     * @access public
-     * @return $this
-     */
-    public function clear(): self
-    {
-        $this->log        = [];
-        static::$logDumps = [];
-
-        return $this;
     }
 
     /**
@@ -284,12 +268,13 @@ class Logger implements LoggerInterface
     private function trigger(string $level, array $messages): bool
     {
         $traceInfo = [];
-        if (in_array(true, array_column(static::$handlers, 3), true) || in_array(true, array_column(static::$whileHandlers, 4), true)) { // trace信息补全，取出注册 日志处理器 是否附加 trace 信息
-            $tmp       = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        // trace信息补全，取出注册 日志处理器 是否附加 trace 信息
+        if (in_array(true, array_column(static::$handlers, 3), true) || in_array(true, array_column(static::$whileHandlers, 4), true)) {
+            $tmp       = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $this->getConfig('debug_backtrace_limit') ?? 2);
             $traceInfo = $tmp[1];
         }
 
-        //普通单次绑定事件触发
+        // 普通单次绑定事件触发
         foreach (static::$handlers as [$handler, $collectingLevel, $loggerId, $withTraceInfo]) {
             $matchId = !$loggerId || (is_array($loggerId) && in_array($this->id, $loggerId, true)) || $loggerId === $this->id;
             if ($matchId && LoggerLevel::levelCompare($level, $collectingLevel) >= 0 && $handler($messages, $level, $this->id, $traceInfo) === false) {
@@ -299,14 +284,15 @@ class Logger implements LoggerInterface
 
         // 条件绑定事件触发
         if (static::$whileHandlers) {
-            static::$logDumps[] = [$messages, $level, $traceInfo, $this->id];// 注意注册白名单会有内存泄漏风险
+            // 注意注册白名单会有内存泄漏风险
+            static::$logDumps[] = [$messages, $level, $traceInfo, $this->id];
             foreach (static::$whileHandlers as $k => [$triggerLevel, $handler, $collectingLevel, $loggerId, $withTraceInfo, $lastOccursIndex]) {
                 $matchId = !$loggerId || (is_array($loggerId) && in_array($this->id, $loggerId, true)) || $loggerId === $this->id;
                 if ($matchId && LoggerLevel::levelCompare($level, $triggerLevel) >= 0) {
                     $dumps = array_slice(static::$logDumps, $lastOccursIndex);
                     // update last trigger dumping data index
                     static::$whileHandlers[$k][5] = $lastOccursIndex + count($dumps);
-                    array_walk($dumps, function ($data) use ($collectingLevel, $handler) {
+                    array_walk($dumps, function($data) use ($collectingLevel, $handler) {
                         [$message, $level, $traceInfo, $loggerId] = $data;
                         if (LoggerLevel::levelCompare($level, $collectingLevel) >= 0) {
                             $handler($message, $level, $loggerId, $traceInfo);
