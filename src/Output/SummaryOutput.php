@@ -1,14 +1,14 @@
 <?php
 
-namespace Sweeper\Logger\output;
+namespace Sweeper\Logger\Output;
 
 /**
  * 概要输出 - Class SummaryOutput
  * collect message and then flush them in specified time interval
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2022/12/19 11:34
- * @Path \logger\output\SummaryOutput
+ * Time: 2023/9/17 22:41
+ * @Path \Sweeper\Logger\Output\SummaryOutput
  */
 class SummaryOutput extends CommonAbstract
 {
@@ -95,12 +95,12 @@ class SummaryOutput extends CommonAbstract
 
     /**
      * do log
-     * @param        $messages
+     * @param array  $messages
      * @param string $level
      * @param string $loggerId
      * @param array  $traceInfo
      */
-    public function output($messages, string $level, string $loggerId, array $traceInfo)
+    public function output(array $messages, string $level, string $loggerId, array $traceInfo)
     {
         if (!$this->startTime) {
             $this->startTime = time();

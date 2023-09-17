@@ -1,6 +1,6 @@
 <?php
 
-namespace Sweeper\Logger\output;
+namespace Sweeper\Logger\Output;
 
 use Sweeper\Logger\Logger;
 use Sweeper\Logger\LoggerLevel;
@@ -9,8 +9,8 @@ use Sweeper\Logger\LoggerLevel;
  * 浏览器控制台输出
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2023/7/21 15:20
- * @Path \logger\output\BrowserConsoleOutput
+ * Time: 2023/9/17 22:40
+ * @Path \Sweeper\Logger\Output\BrowserConsoleOutput
  */
 class BrowserConsoleOutput extends CommonAbstract
 {
@@ -54,7 +54,7 @@ class BrowserConsoleOutput extends CommonAbstract
         });
     }
 
-    public function output($messages, string $level, string $loggerId, array $traceInfo)
+    public function output(array $messages, string $level, string $loggerId, array $traceInfo)
     {
         $this->logs[] = [$level, $messages, $loggerId, $traceInfo];
     }

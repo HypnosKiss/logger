@@ -2,7 +2,7 @@
 
 namespace Sweeper\Logger\test;
 
-use Sweeper\Logger\traits\LogService;
+use Sweeper\Logger\Traits\LoggerTrait;
 
 require_once '../vendor/autoload.php';
 
@@ -14,7 +14,7 @@ require_once '../vendor/autoload.php';
 class testObj
 {
 
-    use LogService;
+    use LoggerTrait;
 
     public function __construct()
     {

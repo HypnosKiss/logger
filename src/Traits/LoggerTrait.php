@@ -5,30 +5,27 @@
  * Time: 2023/5/17 22:15
  */
 
-namespace Sweeper\Logger\traits;
+namespace Sweeper\Logger\Traits;
 
 use ReflectionClass;
-use Sweeper\Logger\lib\Log;
+use Sweeper\Logger\Lib\LogLogic;
 use Sweeper\Logger\Logger;
 use Sweeper\Logger\LoggerException;
 use Sweeper\Logger\LoggerLevel;
 
 /**
- * 日志服务
+ * Logger 复用特征
  * Created by PhpStorm.
  * User: Sweeper
  * Time: 2023/7/24 11:33
- * @Path \Sweeper\Logger\traits\LogService
+ * @Path \Sweeper\Logger\Traits\LoggerTrait
  * @mixin Logger
- * @mixin Log
+ * @mixin LogLogic
  */
-trait LogService
+trait LoggerTrait
 {
 
-    /** @var array 日志服务配置 */
-    protected $logServiceConfig = [];
-
-    /** @var Log 日志服务 */
+    /** @var LogLogic 日志服务 */
 
     protected $logService;
 
@@ -39,30 +36,9 @@ trait LogService
     protected $logger;
 
     /**
-     * @return array
+     * @return LogLogic
      */
-    public function getLogServiceConfig(): array
-    {
-        return $this->logServiceConfig;
-    }
-
-    /**
-     * User: Sweeper
-     * Time: 2023/5/18 9:21
-     * @param array $logServiceConfig
-     * @return $this
-     */
-    public function setLogServiceConfig(array $logServiceConfig): self
-    {
-        $this->logServiceConfig = $logServiceConfig;
-
-        return $this;
-    }
-
-    /**
-     * @return Log
-     */
-    public function getLogService(): Log
+    public function getLogService(): LogLogic
     {
         return $this->logService;
     }
@@ -70,10 +46,10 @@ trait LogService
     /**
      * User: Sweeper
      * Time: 2023/5/18 9:06
-     * @param Log $logService
+     * @param LogLogic $logService
      * @return $this
      */
-    public function setLogService(Log $logService): self
+    public function setLogService(LogLogic $logService): self
     {
         $this->logService = $logService;
 
@@ -130,8 +106,8 @@ trait LogService
      */
     public function initializeLogService(array $config = []): self
     {
-        if (!($this->logService instanceof Log)) {
-            $this->logService = Log::instance(array_replace([], $this->getLoggerConfig(), $config));
+        if (!($this->logService instanceof LogLogic)) {
+            $this->logService = LogLogic::instance(array_replace([], $this->getLoggerConfig(), $config));
         }
 
         return $this;
@@ -146,7 +122,7 @@ trait LogService
      * @param bool        $isUnique
      * @param string|null $consoleLevel
      * @param string|null $fileLevel
-     * @return LogService
+     * @return LoggerTrait
      */
     public function initializeLogger(array $config = [], string $logId = null, bool $isUnique = true, string $consoleLevel = null, string $fileLevel = null): self
     {
@@ -168,7 +144,7 @@ trait LogService
     {
         $method = strtoupper($methodName);
         $class  = new ReflectionClass(static::class);
-        if (method_exists(Log::class, $method)) {
+        if (method_exists(LogLogic::class, $method)) {
 
             $this->initializeLogService();
 

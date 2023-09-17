@@ -9,8 +9,8 @@ use Psr\Log\LoggerTrait;
  * 日志记录器
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2023/7/21 15:07
- * @Path \logger\Logger
+ * Time: 2023/9/17 22:30
+ * @Path \Sweeper\Logger\Logger
  */
 class Logger implements LoggerInterface
 {

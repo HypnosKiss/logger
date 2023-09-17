@@ -1,10 +1,17 @@
 <?php
 
-namespace Sweeper\Logger\output;
+namespace Sweeper\Logger\Output;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 
+/**
+ * 日志输出抽象
+ * Created by PhpStorm.
+ * User: Sweeper
+ * Time: 2023/9/17 22:42
+ * @Path \Sweeper\Logger\Output\CommonAbstract
+ */
 abstract class CommonAbstract implements LoggerInterface
 {
 
@@ -19,7 +26,7 @@ abstract class CommonAbstract implements LoggerInterface
      */
     public static function combineMessages($messages): string
     {
-        return count($messages) === 1 && is_string(current($messages)) ? current($messages) : json_encode((array)$messages, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return count($messages) === 1 && is_string(current($messages)) ? current($messages) : json_encode((array)$messages, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -102,12 +109,14 @@ abstract class CommonAbstract implements LoggerInterface
 
     /**
      * output handler
-     * @param array|string $messages
-     * @param string       $level
-     * @param string       $loggerId
-     * @param array        $traceInfo
+     * User: Sweeper
+     * Time: 2023/9/17 22:46
+     * @param array  $messages
+     * @param string $level
+     * @param string $loggerId
+     * @param array  $traceInfo
      * @return mixed
      */
-    abstract public function output($messages, string $level, string $loggerId, array $traceInfo);
+    abstract public function output(array $messages, string $level, string $loggerId, array $traceInfo);
 
 }

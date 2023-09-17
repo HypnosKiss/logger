@@ -15,8 +15,8 @@ use Psr\Log\LogLevel;
  * defined referred to PSR-3
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2023/7/20 17:55
- * @Path \logger\LoggerLevel
+ * Time: 2023/9/17 22:36
+ * @Path \Sweeper\Logger\LoggerLevel
  */
 class LoggerLevel extends LogLevel
 {

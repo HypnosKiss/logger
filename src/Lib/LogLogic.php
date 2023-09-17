@@ -1,22 +1,22 @@
 <?php
 
-namespace Sweeper\Logger\lib;
+namespace Sweeper\Logger\Lib;
 
 use Sweeper\DesignPattern\Traits\Multiton;
 use Sweeper\Logger\Logger;
 use Sweeper\Logger\LoggerException;
 use Sweeper\Logger\LoggerLevel;
-use Sweeper\Logger\output\ConsoleOutput;
-use Sweeper\Logger\output\FileOutput;
+use Sweeper\Logger\Output\ConsoleOutput;
+use Sweeper\Logger\Output\FileOutput;
 
 /**
  * 提供便捷的 log 注册方法
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2023/7/24 11:14
- * @Path \Sweeper\Logger\lib\Log
+ * Time: 2023/9/17 22:48
+ * @Path \Sweeper\Logger\Lib\Log
  */
-class Log
+class LogLogic
 {
 
     use Multiton;

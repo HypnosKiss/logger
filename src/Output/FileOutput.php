@@ -1,13 +1,13 @@
 <?php
 
-namespace Sweeper\Logger\output;
+namespace Sweeper\Logger\Output;
 
 /**
  * 文件输出
  * Created by PhpStorm.
  * User: Sweeper
- * Time: 2023/7/21 15:34
- * @Path \logger\output\FileOutput
+ * Time: 2023/9/17 22:41
+ * @Path \Sweeper\Logger\Output\FileOutput
  */
 class FileOutput extends CommonAbstract
 {
@@ -75,12 +75,12 @@ class FileOutput extends CommonAbstract
 
     /**
      * do log
-     * @param        $messages
+     * @param array  $messages
      * @param string $level
      * @param string $loggerId
      * @param array  $traceInfo
      */
-    public function output($messages, string $level, string $loggerId, array $traceInfo)
+    public function output(array $messages, string $level, string $loggerId, array $traceInfo)
     {
         $str = str_replace(['{id}', '{level}', '{message}'], [$loggerId, $level, static::combineMessages($messages)], $this->format);
         $str = preg_replace_callback('/(%\w)/', function ($matches) { return date(str_replace('%', '', $matches[1])); }, $str);
