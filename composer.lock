@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f011bdea8a6df47a361c0c6a8744baa",
+    "content-hash": "49a902351f0b1a7609f87901edd782d6",
     "packages": [
         {
             "name": "psr/log",
@@ -58,16 +58,16 @@
         },
         {
             "name": "sweeper/design-pattern",
-            "version": "1.0.1.2",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HypnosKiss/design-pattern.git",
-                "reference": "011e031ec0c151bc040ca469e2f3f0b86ddd34ee"
+                "reference": "1745d69b9221a0718f7cb30c198e4c8b0856a1ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HypnosKiss/design-pattern/zipball/011e031ec0c151bc040ca469e2f3f0b86ddd34ee",
-                "reference": "011e031ec0c151bc040ca469e2f3f0b86ddd34ee",
+                "url": "https://api.github.com/repos/HypnosKiss/design-pattern/zipball/1745d69b9221a0718f7cb30c198e4c8b0856a1ee",
+                "reference": "1745d69b9221a0718f7cb30c198e4c8b0856a1ee",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                     "email": "wili.lixiang@gmail.com"
                 }
             ],
-            "description": "design-pattern example",
+            "description": "design-pattern Generic examples",
             "homepage": "https://github.com/HypnosKiss/design-pattern/",
             "keywords": [
                 "design-pattern",
@@ -97,9 +97,9 @@
             ],
             "support": {
                 "issues": "https://github.com/HypnosKiss/design-pattern/issues",
-                "source": "https://github.com/HypnosKiss/design-pattern/tree/1.0.1.2"
+                "source": "https://github.com/HypnosKiss/design-pattern/tree/1.0.2"
             },
-            "time": "2023-09-05T04:33:31+00:00"
+            "time": "2023-09-15T16:01:10+00:00"
         }
     ],
     "packages-dev": [],
@@ -113,5 +113,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

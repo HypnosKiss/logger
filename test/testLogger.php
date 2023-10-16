@@ -1,7 +1,9 @@
 <?php
 
-namespace Sweeper\Logger\test;
+namespace Sweeper\Test;
 
+use Sweeper\Logger\LoggerLevel;
+use Sweeper\Logger\Logic\Log;
 use Sweeper\Logger\Traits\LoggerTrait;
 
 require_once '../vendor/autoload.php';
@@ -11,14 +13,14 @@ require_once '../vendor/autoload.php';
  * User: Sweeper
  * Time: 2023/7/24 11:53
  */
-class testObj
+class testLogger
 {
 
     use LoggerTrait;
 
     public function __construct()
     {
-        $this->setLogFile('/webroot/php/logs/test.info.log');
+        // $this->setLogFile(__DIR__ . '/logs/test.info.log');
         $this->debug('__construct');
     }
 
@@ -29,10 +31,15 @@ class testObj
 
     public function run()
     {
-        $this->info('run');
+        $this->info('run', 123, 456);
     }
 
 }
 
-$obj = new testObj();
+$logger = Log::instance()->logger($logId ?? 'test', LoggerLevel::DEBUG, LoggerLevel::INFO);
+$logger->debug('123');
+$logger->debug('456');
+$logger->info('789');
+
+$obj = new testLogger();
 $obj->run();
