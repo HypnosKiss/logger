@@ -231,4 +231,16 @@ trait LoggerTrait
         throw new LoggerException('Method no exists:' . $name);
     }
 
+    /**
+     * Author: Sweeper <wili.lixiang@gmail.com>
+     * DateTime: 2023/10/21 23:46
+     * @param $level
+     * @param ...$arguments
+     * @return mixed
+     */
+    protected function log($level, ...$arguments)
+    {
+        return $this->getLogger()->{$level}(...$arguments);
+    }
+
 }

@@ -28,7 +28,7 @@ class BrowserConsoleOutput extends CommonAbstract
 
     public function __construct()
     {
-        register_shutdown_function(function () {
+        register_shutdown_function(function() {
             if (!$this->logs) {
                 return;
             }

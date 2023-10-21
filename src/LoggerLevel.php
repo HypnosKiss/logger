@@ -62,7 +62,7 @@ class LoggerLevel extends LogLevel
      */
     public static function levelCompare($lv1, $lv2): int
     {
-        return static::SEVERITY_ORDER[$lv1] <=> self::SEVERITY_ORDER[$lv2];// 如果 $lv1 > $lv2，则返回的值为 1；如果 $lv1 == $lv2，则返回的值为 0；如果 $lv1 < $lv2，则返回的值为 -1；
+        return static::SEVERITY_ORDER[$lv1] <=> static::SEVERITY_ORDER[$lv2];// 如果 $lv1 > $lv2，则返回的值为 1；如果 $lv1 == $lv2，则返回的值为 0；如果 $lv1 < $lv2，则返回的值为 -1；
     }
 
 }

@@ -92,13 +92,13 @@ class Logger implements LoggerInterface
      * 在对象中调用一个不可访问方法时，__call() 会被调用
      * User: Sweeper
      * Time: 2023/7/20 16:50
-     * @param string $methodName
+     * @param string $name
      * @param array  $arguments
      * @return $this
      */
-    public function __call(string $methodName, array $arguments)
+    public function __call(string $name, array $arguments)
     {
-        $levelMethod = strtoupper($methodName);
+        $levelMethod = strtoupper($name);
         if (defined(LoggerLevel::class . "::$levelMethod")) {
             $level = constant(LoggerLevel::class . "::$levelMethod");
 
@@ -121,13 +121,13 @@ class Logger implements LoggerInterface
      * call static log method via default logger instance 在静态上下文中调用一个不可访问方法时，__callStatic() 会被调用。
      * User: Sweeper
      * Time: 2023/7/20 16:52
-     * @param string $methodName
+     * @param string $name
      * @param array  $arguments
      * @return false|null
      */
-    public static function __callStatic(string $methodName, array $arguments)
+    public static function __callStatic(string $name, array $arguments)
     {
-        $levelMethod = strtoupper($methodName);
+        $levelMethod = strtoupper($name);
         if (defined(LoggerLevel::class . "::$levelMethod")) {
             $level = constant(LoggerLevel::class . "::$levelMethod");
 
