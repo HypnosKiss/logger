@@ -1,6 +1,6 @@
 <?php
 
-namespace Sweeper\Test;
+namespace Sweeper\Logger\Test;
 
 use Sweeper\Logger\LoggerLevel;
 use Sweeper\Logger\Logic\Log;
